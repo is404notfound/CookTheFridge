@@ -1,10 +1,10 @@
 'use client'
 
-import type { Metadata } from "next";
 import { Inter} from "next/font/google";
 import "./globals.css";
 import {NextUIProvider} from "@nextui-org/react";
 import Header from "@/components/Header";
+import { RecoilRoot } from "recoil";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +17,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextUIProvider>
-          <Header />
-          {children}
-        </NextUIProvider>
+        <RecoilRoot> 
+          <NextUIProvider>
+            <Header />
+            {children}
+          </NextUIProvider>
+        </RecoilRoot>
       </body>
     </html>
   );

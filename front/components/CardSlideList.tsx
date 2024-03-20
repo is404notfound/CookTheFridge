@@ -7,18 +7,19 @@ export default function CardSlideList({
 }: {
   isCheckable?: boolean;
   itemList: {
+    id: number;
     image?: string;
-    title?: string;
+    name: string;
     description?: string;
   }[];
 }) {
   return (
-    <div className="flex flex-row items-center justify-center">
+    <div className="flex flex-row items-center justify-center overflow-x-scroll">
       { itemList.map((item, index) => {
         return isCheckable ? (
           <CheckboxCard key={index} item={item} />
         ) : (
-          <Card key={index} image={item.image} title={item.title} description={item.description} />
+          <Card key={index} image={item.image} title={item.name} />
         )
       }
       )}

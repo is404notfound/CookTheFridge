@@ -1,16 +1,23 @@
 import Card from "./Card";
 
-export default function CardGridList({ itemList=[]}) {
+export default function CardGridList({ itemList=[] }: { [key: string]:any }[] ) {
     return(
         <div className="grid grid-cols-3 gap-4">
-        {itemList.map((item, index) => (
-          <Card
-            key={index}
-            image={item.image}
-            title={item.title}
-            description={item.description}
-          />
-        ))}
+        { itemList.length ? 
+          itemList.map((item, index: number) => (
+            <Card
+              key={index}
+              image={item.image}
+              title={item.name}
+              firstDescription={item.description}
+              secondDescription={item.ingredients.map(({ name }) => name).join(", ") }
+            />
+          )) : (
+            <div className=" col-span-3 flex justify-center items-center">
+              <h1 className="text-sm pb-3">No Recipes Found</h1>
+            </div>
+          ) 
+        }
       </div>
     )
 }

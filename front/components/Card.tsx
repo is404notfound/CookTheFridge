@@ -2,19 +2,19 @@ import React from "react";
 import {Card, CardHeader, CardBody, Image} from "@nextui-org/react";
 
 export default function CardComponent({
-    title, description, image, type
+    title, image, firstDescription, secondDescription
 }: {
     title?: string;
-    description?: string;
     image?: string;
-    type?: string;
+    firstDescription?: string;
+    secondDescription?: string;
 }) {
   return (
     <Card className="py-4 mr-2">
       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-        <p className="text-tiny uppercase font-bold">{type}</p>
-        <small className="text-default-500">{description}</small>
+        <p className="text-tiny uppercase font-bold">{firstDescription}</p>
         <h4 className="font-bold text-large">{title}</h4>
+        <small className="text-default-500">{secondDescription}</small>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
         <Image
