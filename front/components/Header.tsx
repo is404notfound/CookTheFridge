@@ -21,8 +21,8 @@ export default function Header() {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link href={`${BASE_URL}/Recipes`} color="foreground">
-            Recipes
+          <Link href={`${BASE_URL}/Cuisines`} color="foreground">
+            Cuisines
           </Link>
         </NavbarItem>
       </NavbarContent>

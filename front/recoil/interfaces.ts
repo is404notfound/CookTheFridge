@@ -4,7 +4,7 @@ export interface IIngredient {
     image?: string;
 }
 
-export interface IRecipe {
+export interface ICuisine {
     id: number;
     name: string;
     ingredients: IIngredient[];

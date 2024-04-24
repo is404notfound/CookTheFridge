@@ -1,6 +1,6 @@
 import Card from "@/components/Card";
 
-export default function CardGridList({ itemList=[] }: { [key: string]:any }[] ) {
+export default function CardGridList({ itemList = [] }: { [key: string] : any }[] ) {
     return(
         <div className="grid grid-cols-3 gap-4">
         { itemList.length ? 
@@ -14,7 +14,7 @@ export default function CardGridList({ itemList=[] }: { [key: string]:any }[] ) 
             />
           )) : (
             <div className=" col-span-3 flex justify-center items-center">
-              <h1 className="text-sm pb-3">No Recipes Found</h1>
+              <h1 className="text-sm pb-3">No Cuisines Found</h1>
             </div>
           ) 
         }
