@@ -10,20 +10,20 @@ export default function CardComponent({
     secondDescription?: string;
 }) {
   return (
-    <Card className="py-4 mr-2">
-      <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-        <p className="text-tiny uppercase font-bold">{firstDescription}</p>
-        <h4 className="font-bold text-large">{title}</h4>
-        <small className="text-default-500">{secondDescription}</small>
+    <Card className="flex flex-col overflow-visible py-4 mr-2" isPressable onPress={()=>{}}>
+      <CardHeader className="flex flex-col pb-0 pt-2 px-4">
+        <p className="text-tiny uppercase font-bold">{firstDescription || ''}</p>
+        <h4 className="font-bold text-large">{title || ''}</h4>
+        <small className="text-default-500">{secondDescription || ''}</small>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
         <Image
+            className="object-cover h-[140px]"
             alt="Card background"
-            className="object-cover rounded-xl"
             src={image}
-            width={270}
+            width="100%"
         />      
-    </CardBody>
+      </CardBody>
     </Card>
   );
 }
