@@ -17,12 +17,18 @@ export default function CardComponent({
         <small className="text-default-500">{secondDescription || ''}</small>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
-        <Image
-            className="object-cover h-[140px]"
-            alt="Card background"
-            src={image}
-            width="100%"
-        />      
+        { 
+          image 
+          ? <Image
+              className="object-cover h-[140px]"
+              alt="Card background"
+              src={image}
+              width="100%"
+          />
+          : <div className="h-[140px] w-full flex justify-center"> 
+              <span className="flex flex-col justify-center"> No Image </span>
+            </div>
+        }
       </CardBody>
     </Card>
   );
