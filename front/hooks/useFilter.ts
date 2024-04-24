@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { checkedListState } from "@/recoil/atoms/filter";
+import { checkedListState } from "@/recoil/atoms/common";
 import { IIngredient } from "@/recoil/interfaces";
 
 const useFilter = ()=> {
