@@ -7,13 +7,8 @@ import { IIngredient, IRecipe } from "@/recoil/interfaces";
 import { useEffect, useState } from "react";
 import CardSlideList from "../components/CardSlideList";
 
-
-export default function Home() {
-  const { checkedList } = useFilter();
-  const [filteredRecipeList, setFilteredRecipeList] = useState<IRecipe[]>([]);
-
   // Mock Data
-  const ingredientsList= ()=> {
+  export const ingredientsList= ()=> {
     const result = [];
 
     for (let i = 1; i <= 20; i++) {
@@ -26,6 +21,11 @@ export default function Home() {
 
     return result;
   }
+
+export default function Home() {
+  const { checkedList } = useFilter();
+  const [filteredRecipeList, setFilteredRecipeList] = useState<IRecipe[]>([]);
+
 
   const recipeList = ()=> {
     const result = [];
