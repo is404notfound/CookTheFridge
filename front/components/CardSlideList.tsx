@@ -3,9 +3,13 @@ import CheckboxCard from "./CheckBoxCard";
 
 export default function CardSlideList({
   isCheckable,
-  itemList=[] ,
+  itemList = [],
+  isEvent = false,
+  cb = (param?: any) => {}
 }: {
   isCheckable?: boolean;
+  isEvent? : boolean;
+  cb?: (param?: any) => void;
   itemList: {
     id: number;
     image?: string;
@@ -19,7 +23,7 @@ export default function CardSlideList({
         return isCheckable ? (
           <CheckboxCard key={index} item={item} />
         ) : (
-          <Card key={index} image={item.image} title={item.name} />
+          <Card key={index} id={item.id} image={item.image} title={item.name} isEvent={isEvent} cb={cb} />
         )
       }
       )}

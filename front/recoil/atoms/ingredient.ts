@@ -5,7 +5,7 @@ export const ingredientState = atom<IIngredient>({
     key: 'ingredientState',
     default: {
         id: 0,
-        name: 'New Ingredient',
+        name: '',
         image: '',
     },
 });

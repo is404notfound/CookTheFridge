@@ -2,18 +2,39 @@ import React from "react";
 import {Card, CardHeader, CardBody, Image} from "@nextui-org/react";
 
 export default function CardComponent({
-    title, image, firstDescription, secondDescription
+    id
+    , title
+    , image
+    , firstDescription
+    , secondDescription
+    , isEvent=false
+    , cb=(param?:any)=>{}
+    , isPressable=true
 }: {
+    id?: number;
     title?: string;
     image?: string;
     firstDescription?: string;
     secondDescription?: string;
+    isEvent?: boolean;
+    cb?: (param?:any) => void;
+    isPressable?: boolean;
 }) {
+
+  function onPress () {
+    const cardInfo = { id, name: title, image };
+    isEvent && cb(cardInfo);
+  }
+
   return (
-    <Card className="flex flex-col overflow-visible py-4 mr-2" isPressable onPress={()=>{}}>
+    <Card 
+      className="flex flex-col overflow-visible py-4 mr-2"
+      isPressable={isPressable} 
+      onPress={onPress}
+    >
       <CardHeader className="flex flex-col pb-0 pt-2 px-4">
         <p className="text-tiny uppercase font-bold">{firstDescription || ''}</p>
-        <h4 className="font-bold text-large">{title || ''}</h4>
+        <h4 className="font-bold text-large">{title || 'Noname'}</h4>
         <small className="text-default-500">{secondDescription || ''}</small>
       </CardHeader>
       <CardBody className="overflow-visible py-2">
