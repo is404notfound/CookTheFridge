@@ -7,6 +7,7 @@ import Card from "@/components/Card";
 import { useRecoilState } from "recoil";
 import { ingredientState } from "@/recoil/atoms/ingredient";
 import { Button } from "@nextui-org/react";
+import { IIngredient } from "@/recoil/interfaces";
 
 export default function Ingredients() {
     const [ingredient, setIngredient] = useRecoilState(ingredientState);
@@ -14,7 +15,7 @@ export default function Ingredients() {
     const initializeIngredients = () => {
         setIngredient({
             id: 0,
-            name: 'New Ingredient',
+            name: '',
             image: '',
         });
     }
@@ -29,6 +30,30 @@ export default function Ingredients() {
         });
     }
 
+    function onClickCardList(card: IIngredient) {
+        setIngredient({
+            ...card,
+        });
+    }
+
+    function onClickSave() {
+        validate();
+        save();
+    }
+    
+    function validate() {
+        if (!name) {
+            alert('Please enter the ingredient name');
+            return;
+        }
+
+        save();
+    }
+
+    function save() {
+
+    }
+
   return (
     <main className="flex flex-col gap-20 p-24">
         <div>
@@ -36,11 +61,11 @@ export default function Ingredients() {
         </div>
         <div className="flex flex-col gap-5">
             <h2 className="text-2xl font-bold">Exist List</h2>
-            <CardSlideList isCheckable={false} itemList={ingredientsList()} />
+            <CardSlideList isCheckable={false} itemList={ingredientsList()} isEvent={true} cb={onClickCardList} />
         </div>
         <div className="flex flex-col gap-5">
             <h2 className="text-2xl font-bold">Preview</h2>
-            <PreviewPanel component={<Card title={name} image={image} />} cb={initializeIngredients} />
+            <PreviewPanel component={<Card title={name} image={image} isEvent={false} isPressable={false} />} cb={initializeIngredients} />
         </div>
         <div className="flex flex-col gap-5">
             <div>
@@ -69,7 +94,7 @@ export default function Ingredients() {
                 </div>
             </div>
             <div className="flex flex-row justify-center p-20">
-                <Button color='primary' onClick={()=>{}}>Save</Button>
+                <Button color='primary' onClick={onClickSave}>Save</Button>
             </div>
         </div>
     </main>
