@@ -24,6 +24,8 @@
       "@/recoil/*": ["recoil/*"],
       "@/hooks/*": ["hooks/*"],
       "@/generators/*": ["generators/*"],
+      "@/utils/*": ["utils/*"],
+      "@/assets/*": ["assets/*"],
     },
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "**/*.json", "**/*.sh"],
