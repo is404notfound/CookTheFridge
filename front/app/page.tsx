@@ -6,49 +6,17 @@ import useFilter from "@/hooks/useFilter";
 import { IIngredient, ICuisine } from "@/recoil/interfaces";
 import { useEffect, useState } from "react";
 import CardSlideList from "../components/CardSlideList";
-
-  // Mock Data
-  export const ingredientsList= ()=> {
-    const result = [];
-
-    for (let i = 1; i <= 20; i++) {
-      result.push({
-        id: i,
-        image: `https://source.unsplash.com/300x200?fruit,${i}`,
-        name: `Ingredient ${i}`,
-      });
-    }
-
-    return result;
-  }
+import { ingredientsList, cuisineList } from "../utils";
 
 export default function Home() {
   const { checkedList } = useFilter();
   const [filteredCuisineList, setFilteredCuisineList] = useState<ICuisine[]>([]);
 
-
-  const cuisineList = ()=> {
-    const result = [];
-
-    for (let i = 1; i <= 15; i++) {
-      result.push({
-        id: i,
-        image: `https://source.unsplash.com/random/300x200?food cuisine,${i}`,
-        name: `Healthy Food ${i}`,
-        ingredients: [{ id: i, name: `Ingredient ${i}`}, { id: i + 1, name: `Ingredient ${i + 1}`}],
-        description: `Description ${i}`,
-        season: `Spring`,
-      });
-    }
-
-    return result;
-  }
-
   useEffect(() => {
     const checkedIngredientIds = checkedList.map((item: IIngredient) => item.id);
     const filteredCuisines = cuisineList().filter((cuisine: ICuisine) => {
       return cuisine.ingredients.some((ingredient: IIngredient) => checkedIngredientIds.includes(ingredient.id));
-      }
+    }
     );
 
     setFilteredCuisineList(filteredCuisines);
@@ -64,7 +32,7 @@ export default function Home() {
       </div>
       <div className="sticky top-0 z-20 bg-black pb-10">
         <h1 className="text-2xl font-bold pb-3 pt-20">Select Ingredients</h1>
-          <CardSlideList isCheckable={true} itemList={ingredientsList()} />
+        <CardSlideList isCheckable={true} itemList={ingredientsList()} />
       </div>
       <div className="z-0 pt-10">
         <h1 className="text-2xl font-bold pb-3">Cuisines</h1>

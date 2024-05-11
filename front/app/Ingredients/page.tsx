@@ -1,7 +1,7 @@
 'use client';
 
 import CardSlideList from "@/components/CardSlideList";
-import { ingredientsList } from "app/page";
+import { ingredientsList } from "../../utils";
 import PreviewPanel from "@/components/PreviewPanel";
 import Card from "@/components/Card";
 import { useRecoilState } from "recoil";
