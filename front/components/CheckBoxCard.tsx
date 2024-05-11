@@ -37,7 +37,7 @@ export default function CheckboxCard({
             />
           </CardBody>
           <CardFooter className="text-small justify-between">
-            <Checkbox color="gradient" isSelected={isChecked} size="md" onChange={()=>handleCheck(item)}>
+            <Checkbox isSelected={isChecked} size="md" onChange={()=>handleCheck(item)}>
               <span className="truncate"> {item?.name} </span>
             </Checkbox>
           </CardFooter>
