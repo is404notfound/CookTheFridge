@@ -3,10 +3,10 @@
 ---
 ## Demo
 ### Web
-![](./front/public/static/images/cook-the-fridge-demo.png)
+![](./front/assets/images/cook-the-fridge-demo.png)
 
 ### Mobile Web
-![](./front/public/static/images/cook-the-fridge-mw-demo.png)
+![](./front/assets/images/cook-the-fridge-mw-demo.png)
 
 ---
 ## Skill Set
