@@ -1,8 +1,15 @@
 import Card from "@/components/Card";
 
-export default function CardGridList({ itemList = [] }: { [key: string] : any }[] ) {
+interface ItemList {
+    image?: string;
+    name: string;
+    description: string;
+    ingredients: { name: string }[];
+}
+
+export default function CardGridList({ itemList }: { itemList: ItemList[] }){
     return(
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-3 grid-cols-2 gap-4">
         { itemList.length ? 
           itemList.map((item, index: number) => (
             <Card
