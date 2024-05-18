@@ -32,7 +32,7 @@ export default function CardComponent({
       isPressable={isPressable} 
       onPress={onPress}
     >
-      <CardHeader className="flex flex-col pb-0 pt-2 px-4">
+      <CardHeader className="w-[150px] flex flex-col pb-0 pt-2 px-4">
         <p className="text-tiny uppercase font-bold">{firstDescription || ''}</p>
         <h4 className="font-bold text-large">{title || 'Noname'}</h4>
         <small className="text-default-500">{secondDescription || ''}</small>
