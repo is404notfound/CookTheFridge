@@ -3,10 +3,31 @@ type User {
   userName: String
 }
 
+type Ingredient {
+  id: Int
+  name: String
+  image: String
+}
+
+type Cuisine {
+  id: Int
+  name: String
+  ingredients: String
+  tags: String
+  image: String
+  description: String
+}
+
 type Query {
   users: [User]
+  user(userId: String!): User
+  cuisines: [Cuisine]
+  ingredients: [Ingredient]
 }
 
 type Mutation {
-  addUser(userId: String!, userName: String!): Boolean
+  postUser(userId: String, userName: String): Boolean
+  postIngredient(id: Int, name: String, image: String): Boolean
+  postCuisine(id: Int, name: String, ingredients: String, image: String, tags: String, description: String): Boolean
+  deleteIngredient(id: Int): Boolean
 }
