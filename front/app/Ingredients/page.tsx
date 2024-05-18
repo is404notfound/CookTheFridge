@@ -1,17 +1,19 @@
 'use client';
 
 import CardSlideList from "@/components/CardSlideList";
-import { ingredientsList } from "@/utils/common";
 import PreviewPanel from "@/components/PreviewPanel";
 import Card from "@/components/Card";
 import { useRecoilState } from "recoil";
 import { ingredientState } from "@/recoil/atoms/ingredient";
 import { Button } from "@nextui-org/react";
 import { IIngredient } from "@/recoil/interfaces";
+import useIngredients from "@/hooks/useIngredients";
 
 export default function Ingredients() {
-    const [ingredient, setIngredient] = useRecoilState(ingredientState);
+    const { ingredientList, save, remove } = useIngredients();
+    const [ingredient, setIngredient] = useRecoilState<IIngredient>(ingredientState);
     const { id, name, image } = ingredient;
+
     const initializeIngredients = () => {
         setIngredient({
             id: 0,
@@ -25,7 +27,6 @@ export default function Ingredients() {
 
         setIngredient({
             ...ingredient,
-            image: value ? `https://source.unsplash.com/300x200?${value}` : '',
             [name]: value,
         });
     }
@@ -37,21 +38,22 @@ export default function Ingredients() {
     }
 
     function onClickSave() {
-        validate();
-        save();
+        const validation: boolean = validate();
+        validation && save(ingredient);
     }
 
     function validate() {
         if (!name) {
-            alert('Please enter the ingredient name');
-            return;
+            alert('Please enter the ingredient name!');
+            return false;
         }
 
-        save();
+        return true;
     }
 
-    function save() {
-
+    async function onClickDelete() {
+        const result = confirm('Are you sure you want to delete this ingredient?');
+        result && remove(id);
     }
 
     return (
@@ -61,7 +63,7 @@ export default function Ingredients() {
             </div>
             <div className="flex flex-col gap-5">
                 <h2 className="text-2xl font-bold">Exist List</h2>
-                <CardSlideList isCheckable={false} itemList={ingredientsList()} isEvent={true} cb={onClickCardList} />
+                <CardSlideList isCheckable={false} itemList={ingredientList} isEvent={true} cb={onClickCardList} />
             </div>
             <div className="flex flex-col gap-5">
                 <h2 className="text-2xl font-bold">Preview</h2>
@@ -91,10 +93,25 @@ export default function Ingredients() {
                                 onChange={updateIngredient}
                             />
                         </div>
+                        <div className="grid grid-cols-2">
+                            <p className="text-xl font-bold">Image Url</p>
+                            <input
+                                type="text"
+                                name="image"
+                                className="text-black border-2 border-gray-300 rounded-md p-2 m-2"
+                                value={image || ''}
+                                onChange={updateIngredient}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="flex flex-row justify-center p-20">
-                    <Button color='primary' onClick={onClickSave}>Save</Button>
+                    <div className="flex flex-row gap-10">
+                        <Button color="primary" onClick={onClickSave}>Save</Button>
+                        {
+                            !!id && <Button color="warning" onClick={onClickDelete}>Delete</Button>
+                        }
+                    </div>
                 </div>
             </div>
         </main>

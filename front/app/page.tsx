@@ -6,18 +6,20 @@ import useFilter from "@/hooks/useFilter";
 import { IIngredient, ICuisine } from "@/recoil/interfaces";
 import { useEffect, useState } from "react";
 import CardSlideList from "@/components/CardSlideList";
-import { ingredientsList, cuisineList } from "@/utils/common";
+import { cuisineList } from "@/utils/common";
+import useIngredients from "@/hooks/useIngredients";
 
 export default function Home() {
   const { checkedList } = useFilter();
   const [filteredCuisineList, setFilteredCuisineList] = useState<ICuisine[]>([]);
+  const { ingredientList } = useIngredients();
 
   useEffect(() => {
     const checkedIngredientIds = checkedList.map((item: IIngredient) => item.id);
     const filteredCuisines = cuisineList().filter((cuisine: ICuisine) => {
-      return cuisine.ingredients.some((ingredient: IIngredient) => checkedIngredientIds.includes(ingredient.id));
-    }
-    );
+      return cuisine.ingredients
+        .some((ingredient: IIngredient) => checkedIngredientIds.includes(ingredient.id));
+    });
 
     setFilteredCuisineList(filteredCuisines);
   }, [checkedList]);
@@ -32,7 +34,7 @@ export default function Home() {
       </div>
       <div className="sticky top-0 z-20 bg-black pb-10">
         <h1 className="text-2xl font-bold pb-3 pt-20 ">Ingredients In Your Fridge</h1>
-        <CardSlideList isCheckable={true} itemList={ingredientsList()} />
+        <CardSlideList isCheckable={true} itemList={ingredientList} />
       </div>
       <div className="z-0 pt-10">
         <h1 className="text-2xl font-bold pb-3">Cuisines Available</h1>
