@@ -7,6 +7,12 @@ const user = {
   selectAll: async () => {
     const query = `SELECT * FROM ${tableName}`;
     const result = await pool.query(query);
+ 
+    return result ? statusUtil.success(result) : statusUtil.false();
+  },
+  select: async (userId) => {
+    const query = `SELECT * FROM ${tableName} WHERE userId = ?`;
+    const result = await pool.query(query, [userId]);
 
     return result ? statusUtil.success(result) : statusUtil.false();
   },
