@@ -8,8 +8,7 @@ export interface ICuisine {
     id: number;
     name: string;
     ingredients: IIngredient[];
-    category?: string;
-    season?: string;
+    tags: string[];
     image?: string;
     description?: string;
 }
